@@ -18,3 +18,5 @@ position values and one storing the 3 dimensional velocity values. Since a charg
 and accelerations, one could, at each timestep, update the position based on the velocity times dt, and then the velocities as 
 the accleration times dt. However, this is subject to instabilities. The leapfrog algorithm circumvents this by splitting the 
 timesteps: dT is halved, and positions and velocities update at every other timestep.
+
+This increases stability.

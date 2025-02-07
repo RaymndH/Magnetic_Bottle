@@ -109,24 +109,14 @@ def func(num, dataSet, line):
     return (line)
 def B_bottle(pos, mu_0=100, dipole_distance=10, mu = np.array([0,0,5])):
     x,y,z = pos;
-    #set the position of the top dipole r prime
-    rp_top = (0.0, 0.0, dipole_distance)
-    #calculate r vector
-    r_top = np.array([x,y,z]) - rp_top
-    #print(r_top)
-    #find magnitude of r
+    rp_top = (0.0, 0.0, dipole_distance) #set the position of the top dipole r prime
+    r_top = np.array([x,y,z]) - rp_top  #calculate r vector
     rmag = sum(r_top**2)**.5
-    #print(rmag)
-    #B(r)
     Btop = mu_0/(4*np.pi)*(3*r_top * np.dot(mu, r_top)/np.power(rmag,5) - mu/np.power(rmag,3))
-    #repeat for bottom dipole
-    rp_bot = (0.0, 0.0, -dipole_distance)
-    #calculate r vector
-    r_bot = np.array([x,y,z]) - rp_bot
-    #find magnitude of r
-    rmag = sum(r_bot**2)**.5
-    #B(r)
-    Bbot = mu_0/(4*np.pi)*(3*r_bot * np.dot(mu, r_bot)/rmag**5 - mu/rmag**3)
+    rp_bot = (0.0, 0.0, -dipole_distance) #repeat for bottom dipole
+    r_bot = np.array([x,y,z]) - rp_bot #calculate r vector
+    rmag = sum(r_bot**2)**.5 #find magnitude of r
+    Bbot = mu_0/(4*np.pi)*(3*r_bot * np.dot(mu, r_bot)/rmag**5 - mu/rmag**3) #B(r)
     return (Btop + Bbot)
 
 def dipole(pos, dpos=np.array([0,0,10]), m=np.array([0,0,1])):
@@ -201,3 +191,9 @@ test[1,2]=.1
 test[1,0]=.1
 d = create_plot(part = test,E=E0, B=B_d, s=10, tot_time=20.,l=10, dt=.004,steps=True, filename='new_animation')
 print('gif saved!')
+
+#I want a function which will calculate the adiabatic invariant mu = W_perp/B as the simulation progresses
+
+
+
+
